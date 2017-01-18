@@ -1,0 +1,8 @@
+dataPath = "/databricks-datasets/Rdatasets/data-001/csv/ggplot2/diamonds.csv"
+diamonds = sqlContext.read.format("com.databricks.spark.csv")\
+   .option("header","true")\
+   .option("inferSchema", "true")\
+  .load(dataPath)
+  
+a = diamonds.groupBy("cut","color").avg("price")
+display(a)
